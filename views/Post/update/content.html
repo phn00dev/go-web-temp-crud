@@ -1,0 +1,55 @@
+{{define "content"}}
+
+    <div class="container mt-5 mb-5 ">
+        <a href="/" class="btn btn-primary mb-3"> <i class="fa fa-arrow-left"></i> Yza </a>
+        <div class="card" >
+            <div class="card-header">
+                <h4>Edit Post</h4>
+            </div>
+            <form action="/posts/update/{{.post.ID}}" method="POST" enctype="multipart/form-data">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="title" class="form-label" style="font-size: 20px;">Title</label>
+                        <input type="text" value="{{.post.Title}}" name="postTitle" class="form-control" id="title" aria-describedby="emailHelp" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div id="current-picture">
+                            <label for="old_image" style="font-size: 20px;">Post suraty: </label>
+                            <img style="width:150px; height:130px;" src="/{{ .post.ImageUrl }}" class="my-2" >
+                        </div>
+                        <br>
+                        <label for="formFile" class="form-label" style="font-size: 20px;">Image</label>
+                        <input  name ="postImage"  class="form-control rounded-0 " type="file"  id="formFile" accept="image/*" onchange="loadFile(event)">
+                        <img class="mt-1" style="width:150px; height:130px;" id="output"/>
+                        <input type="hidden" name="isSelected" id="is_selected" value="0" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="desc" class="form-label" style="font-size: 20px;">Desc</label>
+                        <textarea  id="desc"  name="postDesc" rows="5" class="form-control rounded-0" required>{{.post.Desc}}</textarea >
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="status" class="form-label" style="font-size: 20px;">Status</label>
+                        <select  id="status" name="postStatus" class="form-select" required>
+                            <option {{if eq .post.Status "" }} selected {{end}} value="">Status Saýla</option>
+                            <option  {{if eq .post.Status "active" }} selected {{end}} value="active">Active</option>
+                            <option {{if eq .post.Status "passive" }} selected {{end}}  value="passive">Passive</option>
+                            <option  {{if eq .post.Status "draft" }} selected {{end}} value="draft">Draft</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById("formFile").addEventListener("change",function (){
+            document.getElementById("is_selected").setAttribute("value","1")
+            document.getElementById("current-picture").style.display = "none"
+        })
+    </script>
+{{end}}

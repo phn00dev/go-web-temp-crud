@@ -1,0 +1,45 @@
+{{define "content"}}
+
+    <div class="container mt-5 mb-5 ">
+        <a href="/" class="btn btn-primary mb-3"> <i class="fa fa-arrow-left"></i> Yza </a>
+        <div class="card" >
+            <div class="card-header">
+                <h4>Add Post</h4>
+            </div>
+            <form action="/posts/store" method="POST" enctype="multipart/form-data">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="title" class="form-label" style="font-size: 20px;">Title</label>
+                        <input type="text" name="postTitle" class="form-control" id="title" aria-describedby="emailHelp" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label" style="font-size: 20px;">Image</label>
+                        <input  name ="postImage" class="form-control rounded-0 " type="file" required id="formFile" accept="image/*" onchange="loadFile(event)">
+                        <img class="mt-1" style="width:150px; height:130px;" id="output"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="desc" class="form-label" style="font-size: 20px;">Desc</label>
+                        <textarea  id="desc"  name="postDesc" rows="5" class="form-control rounded-0" required ></textarea >
+                        
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="status" class="form-label" style="font-size: 20px;">Status</label>
+                        <select  id="status" name="postStatus" class="form-select" required>
+                            <option  value="">Status Saýla</option>
+                            <option  value="active">Active</option>
+                            <option  value="passive">Passive</option>
+                            <option  value="draft">Draft</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{{end}}

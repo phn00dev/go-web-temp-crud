@@ -1,0 +1,16 @@
+<!doctype html>
+{{define "postIndex"}}
+<html lang="en">
+{{template "head"}}
+<body>
+{{template "header"}}
+
+{{template "content" .}}
+
+{{template "footer"}}
+
+{{template "script"}}
+{{template "alert" .alert}}
+</body>
+</html>
+{{end}}
